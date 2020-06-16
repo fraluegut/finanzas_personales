@@ -9,6 +9,7 @@ import numpy as np
 import xlrd
 
 # 1. Conectarse a la base de datos en localhost
+# 2. Traer todos los archivos que ya se han subido a localhost.
 # 2. Abrir el archivo excel
 # 3. Por cada fila de archivo excel: comprobar si ese registro existe y si no, subirlo a la base de datos.
 

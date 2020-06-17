@@ -25,81 +25,110 @@ mydb = mysql.connector.connect(
     database="finanzas"
 )
 
-# 2. Abrir todos los archivos excel dentro de una carpeta
-import glob, os
-os.chdir("/home/fraluegut/PycharmProjects/finanzas_personales/")
-archivos_agregados = []
-for file in glob.glob("*.txt"):
-    print(file)
-    if file == 'archivo_lista.txt':
-        print("El archivo archivo_lista.txt existe")
-        arch = open('archivo_lista.txt', 'r')
-        for linea in arch:
-            archivos_agregados.append(int(linea))
-        arch.close()
-    else:
-        print("El archivo archivo_lista.txt no existe")
 
 
-print("Archivos agregados A:")
-print(archivos_agregados)
+# archivo = "HOla"
+mycursor = mydb.cursor()
+# sql = "INSERT INTO archivos_incorporados(id, archivo) VALUES(%s)"%(archivo)
+#
+# mycursor.execute(sql)
+# mydb.commit()
 
 
+#
+sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, saldo, identificador) VALUES(%s,%s,%s,%s, %s, %s)"
+# identificador = str(valores[val][0]) + "_" + str(valores[val][1]) + "_" + str(valores[val][3])
+#     print("Identificador: ")
+#     print(identificador)
+#
+#
+#
+#
+# valores_a_insertar = (valores[val][0], valores[val][1], valores[val][2], valores[val][3], valores[val][4], identificador)
+valores_a_insertar = (1, d(2020-01-01 00:00:00), 1, 1, 1, 1)
+#     print("Valor a insertar: ")
+#     print(valores_a_insertar)
+mycursor.execute(sql, valores_a_insertar)
+mydb.commit()
+#     print(mycursor.rowcount, "Registro insertado satisfactoriamente.")
 
-print("Archivos agregados B:")
-print(archivos_agregados)
-
-for file in glob.glob("*.xlsx"):
-    if file not in archivos_agregados:
-        archivos_agregados.append(file)
-        print(file)
-        print("Archivo %s agregado" %(file))
-
-
-def guardar_datos(datos):
-    with open("datos.txt", "w") as f:
-
-        f.write(str(archivos_agregados))
-def cargar_datos():
-    with open("datos.txt", "r") as f:
-        datos = [[d1, int(d2), int(d3)]
-                     for d1, d2, d3 in (l.rstrip().split(",") for l in f)]
-        print(datos)
-        return datos
-
-print("Impreso")
-f = open("datos.txt", "r")
-print(f.read())
-impreso = f.read()
-
-def Convert(string):
-    li = list(string.split(","))
-    print(li)
-    return li
-
-# impreso = eval('[' + impreso + ']')
-# print("Imprimido")
-# print(impreso)
-
-a = ','.join(impreso)
-print("A: %s" %(a))
-# Driver code
-# Convert(impreso)
-# print(Convert(impreso))
-
-datos = cargar_datos()
-
-
-nuevo_archivo = "../archivo_lista.txt"
-f = open(nuevo_archivo, 'a+')
-
-for i in archivos_agregados:
-    f.write(i)
-    #print(i)
-f.close()
-
-print("Archivos agregados C:")
-print(archivos_agregados)
+#
+#
+# # 2. Abrir todos los archivos excel dentro de una carpeta
+# import glob, os
+# os.chdir("/home/fraluegut/PycharmProjects/finanzas_personales/")
+# archivos_agregados = []
+# for file in glob.glob("*.txt"):
+#     print(file)
+#     if file == 'archivo_lista.txt':
+#         print("El archivo archivo_lista.txt existe")
+#         arch = open('archivo_lista.txt', 'r')
+#         for linea in arch:
+#             archivos_agregados.append(int(linea))
+#         arch.close()
+#     else:
+#         print("El archivo archivo_lista.txt no existe")
+#
+#
+# print("Archivos agregados A:")
+# print(archivos_agregados)
+#
+#
+#
+# print("Archivos agregados B:")
+# print(archivos_agregados)
+#
+# for file in glob.glob("*.xlsx"):
+#     if file not in archivos_agregados:
+#         archivos_agregados.append(file)
+#         print(file)
+#         print("Archivo %s agregado" %(file))
+#
+#
+# def guardar_datos(datos):
+#     with open("datos.txt", "w") as f:
+#
+#         f.write(str(archivos_agregados))
+# def cargar_datos():
+#     with open("datos.txt", "r") as f:
+#         datos = [[d1, int(d2), int(d3)]
+#                      for d1, d2, d3 in (l.rstrip().split(",") for l in f)]
+#         print(datos)
+#         return datos
+#
+# print("Impreso")
+# f = open("datos.txt", "r")
+# print(f.read())
+# impreso = f.read()
+#
+# def Convert(string):
+#     li = list(string.split(","))
+#     print(li)
+#     return li
+#
+# # impreso = eval('[' + impreso + ']')
+# # print("Imprimido")
+# # print(impreso)
+#
+# a = ','.join(impreso)
+# print("A: %s" %(a))
+# # Driver code
+# # Convert(impreso)
+# # print(Convert(impreso))
+#
+# datos = cargar_datos()
+#
+#
+# nuevo_archivo = "../archivo_lista.txt"
+# f = open(nuevo_archivo, 'a+')
+#
+# for i in archivos_agregados:
+#     f.write(i)
+#     #print(i)
+# f.close()
+#
+# print("Archivos agregados C:")
+# print(archivos_agregados)
 #
 # archivo_banco = 'export2020612.xlsx'
 # df = pd.read_excel(archivo_banco)

@@ -1,4 +1,6 @@
 import os
+
+import Marshmallow as Marshmallow
 import connexion
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -13,11 +15,11 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_ECHO'] = True
 
 url = app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finanzas.db')
-    # He utilizado sólo tres barras en vez de cuatro para que funcione anterior: 'sqlite:////'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Create the SQLAlchemy db instance
 db = SQLAlchemy(app)
 
 # Initialize Marshmallow
-# ma = Marshmallow(app)
+ma = Marshmallow(app)

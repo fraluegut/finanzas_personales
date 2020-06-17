@@ -17,8 +17,8 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 Base.query = db_session.query_property()
 ################## FINANZAS_BASE #########################
-class Finanzas_base(Base):
-    __tablename__ = 'finanzas_base'
+class Finanzas(Base):
+    __tablename__ = 'finanzas'
 
     id = Column(Integer, primary_key=True)
     fecha_creacion_registro = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -33,7 +33,7 @@ class Finanzas_base(Base):
 
 
     #Relaciones
-    relacion_con_nada = relationship("ID", cascade="all, delete", passive_deletes=True)
+    # relacion_con_nada = relationship("ID", cascade="all, delete", passive_deletes=True)
 
 
     @classmethod

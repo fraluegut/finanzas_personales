@@ -1,10 +1,18 @@
 import os
 
-import Marshmallow as Marshmallow
+import marshmallow as marshmallow
 import connexion
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 # from flask_marshmallow import Marshmallow
+import os
+from flask import Flask
+from flask_cors import CORS
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.pool import NullPool
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -14,12 +22,25 @@ app = Flask(__name__)
 # Configure the SQLAlchemy part of the app instance
 app.config['SQLALCHEMY_ECHO'] = True
 
-url = app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finanzas.db')
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Create the SQLAlchemy db instance
-db = SQLAlchemy(app)
+CORS(app)
+# Configure the SQLAlchemy part of the app instance
 
-# Initialize Marshmallow
-ma = Marshmallow(app)
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@mariadb:3305/finanzas'
+url = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@mariadb:3305/finanzas'
+
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Create the SQLAlchemy db instance
+Base = declarative_base()
+engine = sqlalchemy.create_engine(url, poolclass=NullPool)
+
+db_session = scoped_session(sessionmaker(autocommit=False,
+                                         autoflush=False,
+                                         bind=engine))
+Base.query = db_session.query_property()
+
+db = db_session()

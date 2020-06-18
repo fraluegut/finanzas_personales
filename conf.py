@@ -29,14 +29,14 @@ CORS(app)
 
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
 app.config['SQLALCHEMY_POOL_TIMEOUT'] = 20
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@mariadb:3305/finanzas'
-url = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@mariadb:3305/finanzas'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost:3305/sistema_financiero'
+url = app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost:3305/sistema_financiero'
 
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Create the SQLAlchemy db instance
 Base = declarative_base()
-engine = sqlalchemy.create_engine(url, poolclass=NullPool)
+engine = sqlalchemy.create_engine(url)
 
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,

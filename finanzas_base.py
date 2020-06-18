@@ -35,17 +35,17 @@ class FinanzasBase(Resource):
         """Devuelve lista total de finanzas"""
         ## Recorre base de datos y lee notificaciones
 
-        # finanzas_bases = Finanzas.query.all()
-        # results = [
-        #     {
-        #         "Id": finanzas_base.id,
-        #         "Fecha_valor": str(finanzas_base.fecha_valor),
-        #         "Fecha_operacion": str(finanzas_base.fecha_operacion),
-        #         "Concepto": finanzas_base.concepto,
-        #         "Importe": finanzas_base.importe,
-        #         "Saldo": finanzas_base.saldo,
-        #         "Identificador": finanzas_base.identificador,
-        #
-        #     } for finanzas_base in finanzas_bases]
-        return "Hola"
-        # return {"Total de registros en finanzas_base"} #len(results), "Finanzas base": results}
+        finanzas_bases = Finanzas.query.all()
+        results = [
+            {
+                "Id": finanzas_base.id,
+                "Fecha_valor": str(finanzas_base.fecha_valor),
+                "Fecha_operacion": str(finanzas_base.fecha_operacion),
+                "Concepto": finanzas_base.concepto,
+                "Importe": finanzas_base.importe,
+                "Saldo": finanzas_base.saldo,
+                "Identificador": finanzas_base.identificador,
+
+            } for finanzas_base in finanzas_bases]
+
+        return {"Total de registros en finanzas_base": len(results), "Finanzas base": results}

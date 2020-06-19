@@ -14,27 +14,27 @@ import xlrd
 # 3. Por cada fila de archivo excel: comprobar si ese registro existe y si no, subirlo a la base de datos.
 
 import pandas as pd
-
-import mysql.connector
-print("Iniciando...")
-# 1. Conectarse a la base de datos en localhost
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="finanzas"
-)
+#
+# import mysql.connector
+# print("Iniciando...")
+# # 1. Conectarse a la base de datos en localhost
+# mydb = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     password="",
+#     database="finanzas"
+# )
 
 
 
 # archivo = "HOla"
-mycursor = mydb.cursor()
+# mycursor = mydb.cursor()
 # sql = "INSERT INTO archivos_incorporados(id, archivo) VALUES(%s)"%(archivo)
 #
 # mycursor.execute(sql)
 # mydb.commit()
 
-
+print(len("Compra Amzn Mktp Es*go4r20ck5, 800-279-6620, Tarjeta 5163830112581329 , Comision 0,00"))
 #
 sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, saldo, identificador) VALUES(%s,%s,%s,%s, %s, %s)"
 # identificador = str(valores[val][0]) + "_" + str(valores[val][1]) + "_" + str(valores[val][3])
@@ -45,12 +45,12 @@ sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, sal
 #
 #
 # valores_a_insertar = (valores[val][0], valores[val][1], valores[val][2], valores[val][3], valores[val][4], identificador)
-valores_a_insertar = (1, d(2020-01-01 00:00:00), 1, 1, 1, 1)
-#     print("Valor a insertar: ")
-#     print(valores_a_insertar)
-mycursor.execute(sql, valores_a_insertar)
-mydb.commit()
-#     print(mycursor.rowcount, "Registro insertado satisfactoriamente.")
+# valores_a_insertar = (1, d(2020-01-01 00:00:00), 1, 1, 1, 1)
+# #     print("Valor a insertar: ")
+# #     print(valores_a_insertar)
+# mycursor.execute(sql, valores_a_insertar)
+# mydb.commit()
+# #     print(mycursor.rowcount, "Registro insertado satisfactoriamente.")
 
 #
 #
@@ -130,9 +130,17 @@ mydb.commit()
 # print("Archivos agregados C:")
 # print(archivos_agregados)
 #
-# archivo_banco = 'export2020612.xlsx'
-# df = pd.read_excel(archivo_banco)
-# print(df)
+archivo_banco = 'export2020612.xlsx'
+df = pd.read_excel(archivo_banco)
+print(df)
+valores = []
+for index, row in df.iterrows():
+    if index > 6:
+        print(row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4'])
+        linea = [row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4']]
+        print("Valor añadido: " + str(index))
+
+
 #
 # # Get number of rows
 # index = df.index

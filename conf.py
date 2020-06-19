@@ -44,3 +44,7 @@ db_session = scoped_session(sessionmaker(autocommit=False,
 Base.query = db_session.query_property()
 
 db = db_session()
+
+_path = os.path.abspath(__file__)
+_path_modulo = os.path.dirname(_path)  # direccion del modulo
+file_conf_google = os.path.join(_path_modulo,'herramientas','client_secret_22627501198-l6265c9ve8ikoh8ic6i5eooog4g32ucs.apps.googleusercontent.com.json')

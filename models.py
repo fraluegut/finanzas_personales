@@ -17,8 +17,8 @@ db_session = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 Base.query = db_session.query_property()
 ################## FINANZAS_BASE #########################
-class Finanzas(Base):
-    __tablename__ = 'finanzas'
+class Registros_bancarios(Base):
+    __tablename__ = 'registros_bancarios'
 
     id = Column(Integer, primary_key=True)
     fecha_creacion_registro = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -26,9 +26,10 @@ class Finanzas(Base):
 
     fecha_valor = Column(DateTime, index=True, nullable=False)
     fecha_operacion = Column(DateTime, index=True, nullable=False)
-    concepto = Column(String(60), index=True, nullable=False)
+    concepto = Column(String(120), index=True, nullable=False)
     importe = Column(Float, index=True, nullable=False)
     saldo = Column(Float, index=True, nullable=True)
+    tarjeta_de = Column(String(60), index=True, nullable=True)
     identificador = Column(String(60), index=True, nullable=False)
 
 

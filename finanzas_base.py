@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, abort, make_response
 from flask_restplus import Api, Resource, reqparse
 from flask_restplus import Namespace
 from conf import db, app
-from models import Finanzas
+from models import Registros_bancarios
 
 import pandas as pd
 import numpy as np
@@ -35,7 +35,7 @@ class FinanzasBase(Resource):
         """Devuelve lista total de finanzas"""
         ## Recorre base de datos y lee notificaciones
 
-        finanzas_bases = Finanzas.query.all()
+        finanzas_bases = Registros_bancarios.query.all()
         results = [
             {
                 "Id": finanzas_base.id,
@@ -45,7 +45,7 @@ class FinanzasBase(Resource):
                 "Importe": finanzas_base.importe,
                 "Saldo": finanzas_base.saldo,
                 "Identificador": finanzas_base.identificador,
-
+                "Tarjeta de": finanzas_base.tarjeta_de,
             } for finanzas_base in finanzas_bases]
 
         return {"Total de registros en finanzas_base": len(results), "Finanzas base": results}

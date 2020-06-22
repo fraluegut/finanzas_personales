@@ -29,8 +29,8 @@ class Registros_bancarios(Base):
     concepto = Column(String(120), index=True, nullable=False)
     importe = Column(Float, index=True, nullable=False)
     saldo = Column(Float, index=True, nullable=True)
-    tarjeta_de = Column(String(60), index=True, nullable=True)
-    identificador = Column(String(60), index=True, nullable=False)
+    tarjeta_de = Column(String(60), index=True, nullable=False)
+    identificador = Column(String(60), index=True, nullable=False, unique=True)
 
 
     #Relaciones

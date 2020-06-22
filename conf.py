@@ -4,14 +4,14 @@ import marshmallow as marshmallow
 import connexion
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-# from flask_marshmallow import Marshmallow
+
 import os
 from flask import Flask
 from flask_cors import CORS
 import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.pool import NullPool
+
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -47,4 +47,4 @@ db = db_session()
 
 _path = os.path.abspath(__file__)
 _path_modulo = os.path.dirname(_path)  # direccion del modulo
-file_conf_google = os.path.join(_path_modulo,'herramientas','client_secret_22627501198-l6265c9ve8ikoh8ic6i5eooog4g32ucs.apps.googleusercontent.com.json')
+

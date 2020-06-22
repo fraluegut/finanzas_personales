@@ -34,10 +34,10 @@ import pandas as pd
 # mycursor.execute(sql)
 # mydb.commit()
 
-print(len("Compra Amzn Mktp Es*go4r20ck5, 800-279-6620, Tarjeta 5163830112581329 , Comision 0,00"))
-#
-sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, saldo, identificador) VALUES(%s,%s,%s,%s, %s, %s)"
-# identificador = str(valores[val][0]) + "_" + str(valores[val][1]) + "_" + str(valores[val][3])
+# print(len("Compra Amzn Mktp Es*go4r20ck5, 800-279-6620, Tarjeta 5163830112581329 , Comision 0,00"))
+# #
+# sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, saldo, identificador) VALUES(%s,%s,%s,%s, %s, %s)"
+# # identificador = str(valores[val][0]) + "_" + str(valores[val][1]) + "_" + str(valores[val][3])
 #     print("Identificador: ")
 #     print(identificador)
 #
@@ -52,8 +52,14 @@ sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, sal
 # mydb.commit()
 # #     print(mycursor.rowcount, "Registro insertado satisfactoriamente.")
 
+# data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")
+df = pd.read_excel("Registros_CC_Agueda.xlsx")
+# calling head() method
+# storing in new variable
+print(list(df.columns.values))
 #
-#
+
+
 # # 2. Abrir todos los archivos excel dentro de una carpeta
 # import glob, os
 # os.chdir("/home/fraluegut/PycharmProjects/finanzas_personales/")
@@ -129,16 +135,16 @@ sql = "INSERT INTO finanzas(fecha_valor, fecha_operacion, concepto, importe, sal
 #
 # print("Archivos agregados C:")
 # print(archivos_agregados)
-#
-archivo_banco = 'export2020612.xlsx'
-df = pd.read_excel(archivo_banco)
-print(df)
-valores = []
-for index, row in df.iterrows():
-    if index > 6:
-        print(row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4'])
-        linea = [row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4']]
-        print("Valor añadido: " + str(index))
+# #
+# archivo_banco = 'export2020612.xlsx'
+# df = pd.read_excel(archivo_banco)
+# print(df)
+# valores = []
+# for index, row in df.iterrows():
+#     if index > 6:
+#         print(row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4'])
+#         linea = [row['Unnamed: 0'], row['Unnamed: 1'], row['CUENTA 123 SMART.'], row['FECHA'], row['Unnamed: 4']]
+#         print("Valor añadido: " + str(index))
 
 
 #

@@ -24,5 +24,5 @@ api.add_namespace(finanzas_base_api)
 
 if __name__ == '__main__':
     ## Corre api
-    app.run(host='127.0.0.1', port=5000, debug=True, threaded=True)
+    app.run(host='127.0.0.1', port=5001, debug=True, threaded=True)
 

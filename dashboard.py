@@ -1,3 +1,5 @@
+
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -43,39 +45,65 @@ print(fechas_unicas)
 print(len(fechas))
 print(len(fechas_unicas))
 
-importe_por_dia = []
-for day in fechas_unicas:
 
-    importe_por_dia.append()
+df = pd.DataFrame({'Date': fechas,
+                   'Importe': importes})
+print("FORMULANDO: ")
+def get_count(values):
+    return len(values)
+importes= df.groupby(['Date'])['Importe'].agg('sum')
+print("DF")
+print(importes)
 
-importe_total_por_fechas_unicas = {'fechas': fechas_unicas, 'importes': importe_por_dia}
-df = pd.DataFrame(data=importe_total_por_fechas_unicas)
-print("Df final: ")
+print("importes")
+print(importes[0])
+df['Fecha'] = df.index
+d = {'fechas': importes['Date'], 'importes': importes['Importe']}
+df = pd.DataFrame(data=d)
+print("Nuevo")
 print(df)
-## DASH
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+# print(df.groupby(by=['Importe','Date']).sum().groupby(level=[0]).cumsum())
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+# print(df.groupby(['Date'])['Importe'].series.agg(get_count))
 
-app.layout = html.Div(children=[
-    html.H1(children='Finanzas personales'),
+# importe_por_dia = []
+# for dia in fechas:
+#
+#     for day in range(len(fechas_unicas)):
+#         suma = df['importes'][day]
+#
+#         print(suma)
+#         importe_por_dia.append(suma)
+#     total = {"dia":dia, "dinero":sum(importe_por_dia)}
 
-    html.Div(children='''
-        Visor de gastos e ingresos acumulados por día
-    '''),
-
-    dcc.Graph(
-        id='Visor de gastos e ingresos acumulados por día',
-        figure=px.scatter(x=df['fechas'], y=df['importes']),
-
-
-    ),
-    dcc.Graph(
-        id='example-graph',
-        figure=px.scatter(x=df['fechas'], y=df['importes']),
-
-    ),
-])
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
+# importe_total_por_fechas_unicas = {'fechas': fechas_unicas, 'importes': importe_por_dia}
+# df = pd.DataFrame(data=importe_total_por_fechas_unicas)
+# print("Df final: ")
+# print(df)
+# ## DASH
+# external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+#
+# app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+#
+# app.layout = html.Div(children=[
+#     html.H1(children='Finanzas personales'),
+#
+#     html.Div(children='''
+#         Visor de gastos e ingresos acumulados por día
+#     '''),
+#
+#     dcc.Graph(
+#         id='Visor de gastos e ingresos acumulados por día',
+#         figure=px.scatter(x=df['fechas'], y=df['importes']),
+#
+#
+#     ),
+#     dcc.Graph(
+#         id='example-graph',
+#         figure=px.scatter(x=df['fechas'], y=df['importes']),
+#
+#     ),
+# ])
+#
+# if __name__ == '__main__':
+#     app.run_server(debug=True)

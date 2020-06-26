@@ -53,6 +53,7 @@ def get_count(values):
     return len(values)
 importes= df.groupby(['Date'])['Importe'].agg('sum')
 print("DF")
+
 print(importes)
 
 print("importes")
